@@ -18,7 +18,15 @@ public class AuthController {
     private final UserService userService;
 
     @GetMapping("/login")
-    public String showLoginForm() {
+    public String showLoginForm(@RequestParam(value = "error", required = false) String error,
+                               @RequestParam(value = "logout", required = false) String logout,
+                               Model model) {
+        if (error != null) {
+            model.addAttribute("error", "Tài khoản hoặc mật khẩu không chính xác. Vui lòng đăng nhập lại!");
+        }
+        if (logout != null) {
+            model.addAttribute("message", "Bạn đã đăng xuất thành công!");
+        }
         return "login";
     }
 

@@ -241,4 +241,19 @@ public class ReviewServiceImpl implements ReviewService {
         Review review = getReviewById(reviewId);
         reviewRepository.delete(review);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Review> getAllReviews(String keyword, ReviewStatus status, Integer rating, Long tourId, Pageable pageable) {
+        // Implementation sẽ phụ thuộc vào repository methods
+        // Tạm thời return tất cả reviews
+        return reviewRepository.findAll(pageable);
+    }
+
+    @Override
+    public Review addAdminResponse(Long reviewId, String response) {
+        Review review = getReviewById(reviewId);
+        review.setAdminResponse(response);
+        return reviewRepository.save(review);
+    }
 }

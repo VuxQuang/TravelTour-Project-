@@ -621,4 +621,12 @@ public class BookingServiceImpl implements BookingService {
             tourScheduleRepository.save(schedule);
         }
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Booking> getAllBookings(String keyword, BookingStatus status, Long tourId, Long userId, Pageable pageable) {
+        // Implementation sẽ phụ thuộc vào repository methods
+        // Tạm thời return tất cả bookings
+        return bookingRepository.findAll(pageable);
+    }
 }

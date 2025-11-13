@@ -28,4 +28,8 @@ public interface TourRepository extends JpaRepository<Tour, Long>, JpaSpecificat
     Optional<Tour> findByIdWithDetails(@Param("id") Long id);
     @Query(value = "SELECT TOP 3 * FROM tours ORDER BY NEWID()", nativeQuery = true)
     List<Tour> findRandom3Tours();
+
+    // Admin methods
+    Page<Tour> findAllByTitleContainingIgnoreCase(String title, Pageable pageable);
+    Page<Tour> findAllByTitleContainingIgnoreCaseAndStatus(String title, String status, Pageable pageable);
 }

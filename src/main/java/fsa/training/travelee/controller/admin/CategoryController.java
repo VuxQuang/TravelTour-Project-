@@ -46,8 +46,10 @@ public class CategoryController {
 
     @GetMapping("/edit/{id}")
     public String editCategoryForm(@PathVariable("id") Long id, Model model, RedirectAttributes ra) {
-        Category category = categoryService.findById(id)
-                .orElseThrow(() -> new RuntimeException("Không tìm thấy danh mục với ID: " + id));
+        Category category = categoryService.findById(id);
+        if (category == null) {
+            throw new RuntimeException("Không tìm thấy danh mục với ID: " + id);
+        }
 
         model.addAttribute("category", category);
         model.addAttribute("isUpdate", true);

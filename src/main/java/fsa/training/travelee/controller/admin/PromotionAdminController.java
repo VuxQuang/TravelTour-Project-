@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,12 +22,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/admin/promotions")
+@RequestMapping("/api/admin/promotions")
 @RequiredArgsConstructor
 @Slf4j
 public class PromotionAdminController {
@@ -302,6 +305,125 @@ public class PromotionAdminController {
         Page<PromotionDto> promotions = promotionService.getAllPromotions(keyword, status, pageable);
 
         return ResponseEntity.ok(promotions);
+    }
+
+    // ========== API ENDPOINTS FOR REACT FRONTEND ==========
+    
+    @GetMapping("/api")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_STAFF')")
+    public ResponseEntity<Map<String, Object>> listPromotionsApi(
+            @RequestParam(value = "keyword", required = false) String keyword,
+            @RequestParam(value = "status", required = false) String status,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        try {
+            PromotionStatus promotionStatus = null;
+            if (status != null && !status.trim().isEmpty()) {
+                try {
+                    promotionStatus = PromotionStatus.valueOf(status.toUpperCase());
+                } catch (IllegalArgumentException e) {
+                    // Ignore invalid status
+                }
+            }
+            
+            Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "id"));
+            Page<PromotionDto> promotionsPage = promotionService.getAllPromotions(keyword, promotionStatus, pageable);
+            
+            List<Map<String, Object>> items = promotionsPage.getContent().stream().map(promotion -> {
+                Map<String, Object> m = new HashMap<>();
+                m.put("id", promotion.getId());
+                m.put("code", promotion.getCode());
+                m.put("title", promotion.getTitle());
+                m.put("description", promotion.getDescription());
+                m.put("discountType", promotion.getDiscountType());
+                m.put("discountValue", promotion.getDiscountValue());
+                m.put("minOrderAmount", promotion.getMinOrderAmount());
+                m.put("maxDiscountAmount", promotion.getMaxDiscountAmount());
+                m.put("usageLimit", promotion.getTotalUsageLimit());
+                m.put("usedCount", promotion.getUsedCount());
+                m.put("startDate", promotion.getStartDate());
+                m.put("endDate", promotion.getEndDate());
+                m.put("status", promotion.getStatus());
+                m.put("createdAt", promotion.getCreatedAt());
+                m.put("updatedAt", promotion.getUpdatedAt());
+                return m;
+            }).toList();
+
+            Map<String, Object> result = new HashMap<>();
+            result.put("items", items);
+            result.put("totalPages", promotionsPage.getTotalPages());
+            result.put("totalElements", promotionsPage.getTotalElements());
+            result.put("page", promotionsPage.getNumber());
+            result.put("size", promotionsPage.getSize());
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
+    }
+
+    @GetMapping("/api/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_STAFF')")
+    public ResponseEntity<Map<String, Object>> getPromotionByIdApi(@PathVariable Long id) {
+        try {
+            PromotionDto promotion = promotionService.getPromotionById(id);
+            
+            Map<String, Object> result = new HashMap<>();
+            result.put("id", promotion.getId());
+            result.put("code", promotion.getCode());
+            result.put("title", promotion.getTitle());
+            result.put("description", promotion.getDescription());
+            result.put("discountType", promotion.getDiscountType());
+            result.put("discountValue", promotion.getDiscountValue());
+            result.put("minOrderAmount", promotion.getMinOrderAmount());
+            result.put("maxDiscountAmount", promotion.getMaxDiscountAmount());
+            result.put("usageLimit", promotion.getTotalUsageLimit());
+            result.put("usedCount", promotion.getUsedCount());
+            result.put("userUsageLimit", promotion.getUserUsageLimit());
+            result.put("startDate", promotion.getStartDate());
+            result.put("endDate", promotion.getEndDate());
+            result.put("status", promotion.getStatus());
+            result.put("applicableTourIds", promotion.getApplicableTourIds());
+            result.put("createdAt", promotion.getCreatedAt());
+            result.put("updatedAt", promotion.getUpdatedAt());
+            
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("/api")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_STAFF')")
+    public ResponseEntity<?> createPromotionApi(@RequestBody CreatePromotionDto request) {
+        try {
+            promotionService.createPromotion(request);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
+    }
+
+    @PutMapping("/api/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_STAFF')")
+    public ResponseEntity<?> updatePromotionApi(@PathVariable Long id, @RequestBody UpdatePromotionDto request) {
+        try {
+            promotionService.updatePromotion(id, request);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
+    }
+
+    @DeleteMapping("/api/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_STAFF')")
+    public ResponseEntity<?> deletePromotionApi(@PathVariable Long id) {
+        try {
+            promotionService.deletePromotion(id);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
     }
 
     private UpdatePromotionDto convertToUpdateDto(PromotionDto promotionDto) {

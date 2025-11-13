@@ -1,0 +1,133 @@
+{
+  "common": {
+    "search": "Search...",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Logout",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "create": "Create",
+    "back": "Back",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "header": {
+    "title": "Travelee",
+    "slogan": "Travel with amazing experiences!",
+    "searchPlaceholder": "Search...",
+    "notifications": "Notifications",
+    "messages": "Messages"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "users": "Users",
+    "tours": "Tours",
+    "articles": "Articles",
+    "bookings": "Bookings",
+    "reviews": "Reviews",
+    "promotions": "Promotions",
+    "support": "Support",
+    "settings": "Settings",
+    "categories": "Category Management",
+    "calendar": "Schedule"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome to Travelee Admin",
+    "totalUsers": "Total Users",
+    "totalTours": "Total Tours",
+    "totalBookings": "Total Bookings",
+    "revenue": "Revenue",
+    "recentActivity": "Recent Activity",
+    "quickStats": "Quick Stats",
+    "averageRating": "Average Rating",
+    "revenueChart": "Daily Revenue Chart",
+    "totalMonthlyRevenue": "Total Monthly Revenue",
+    "totalMonthlyBookings": "Total Monthly Bookings",
+    "month": "Month",
+    "noRecentActivity": "No recent activity"
+  },
+  "users": {
+    "title": "User Management",
+    "list": "User List",
+    "create": "Create New User",
+    "edit": "Edit User",
+    "details": "User Details",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "role": "Role",
+    "status": "Status",
+    "createdAt": "Created At",
+    "actions": "Actions"
+  },
+  "articles": {
+    "title": "Article Management",
+    "list": "Article List",
+    "create": "Create New Article",
+    "edit": "Edit Article",
+    "titleField": "Title",
+    "content": "Content",
+    "author": "Author",
+    "publishedAt": "Published At",
+    "status": "Status"
+  },
+  "language": {
+    "vi": "Tiếng Việt",
+    "en": "English",
+    "ja": "日本語",
+    "select": "Select Language"
+  },
+  "tours": {
+    "title": "Tour Management",
+    "list": "Tour List",
+    "create": "Create New Tour",
+    "edit": "Edit Tour",
+    "name": "Tour Name",
+    "description": "Description",
+    "price": "Price",
+    "duration": "Duration",
+    "status": "Status",
+    "active": "Active",
+    "inactive": "Inactive",
+    "draft": "Draft",
+    "domestic": "Domestic Travel",
+    "international": "International Travel",
+    "resort": "Resort Travel",
+    "adventure": "Adventure Travel"
+  },
+  "categories": {
+    "title": "Category Management",
+    "list": "Category List",
+    "create": "Create New Category",
+    "edit": "Edit Category",
+    "name": "Category Name",
+    "description": "Description",
+    "status": "Status",
+    "active": "Active",
+    "inactive": "Inactive",
+    "searchPlaceholder": "Search by category name",
+    "createButton": "Create Category",
+    "deleteConfirm": "Are you sure you want to delete category"
+  },
+  "calendar": {
+    "title": "Schedule",
+    "schedule": "Schedule",
+    "events": "Events",
+    "bookings": "Bookings"
+  },
+  "login": {
+    "title": "Admin Login",
+    "username": "Username",
+    "password": "Password",
+    "submit": "Login",
+    "submitting": "Logging in...",
+    "error": "Login failed. Please check your credentials."
+  }
+}

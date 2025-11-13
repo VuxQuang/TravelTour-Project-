@@ -1,0 +1,99 @@
+.usersPage {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.createBtn {
+  background: #10b981;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.searchForm {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.searchForm input {
+  border: 1px solid #e1e5e9;
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+
+.searchForm button {
+  background: #667eea;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.tableWrap { overflow: auto; }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  text-align: left;
+  padding: 12px 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.table th { background: #f8fafc; font-weight: 600; }
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.actionBtn {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #e1e5e9;
+  background: #fff;
+  cursor: pointer;
+}
+
+.actionBtn.primary { border-color: #667eea; color: #667eea; }
+.actionBtn.warning { border-color: #f59e0b; color: #b45309; }
+.actionBtn.danger { border-color: #ef4444; color: #b91c1c; }
+
+.pagination {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.pagination button {
+  min-width: 36px;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid #e1e5e9;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background: #667eea;
+  color: #fff;
+  border-color: #667eea;
+}
+
+

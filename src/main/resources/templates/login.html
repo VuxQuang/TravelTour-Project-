@@ -29,6 +29,10 @@
             margin-bottom: 10px;
         }
         
+        .toast.error {
+            background: #ef4444;
+        }
+        
         .toast i {
             font-size: 20px;
         }
@@ -143,15 +147,33 @@ document.addEventListener('DOMContentLoaded', function() {
     if (urlParams.get('success') === 'true') {
         showToast('Bạn đã đăng ký thành công!', 'success');
     }
+    
+    // Kiểm tra thông báo lỗi từ server
+    const errorMessage = /*[[${error}]]*/ null;
+    if (errorMessage && errorMessage !== 'null') {
+        showToast(errorMessage, 'error');
+    }
+    
+    // Kiểm tra thông báo thành công từ server
+    const successMessage = /*[[${message}]]*/ null;
+    if (successMessage && successMessage !== 'null') {
+        showToast(successMessage, 'success');
+    }
+    
+    // Fallback: Kiểm tra URL parameter nếu không có thông báo từ server
+    if (!errorMessage && urlParams.get('error') === 'true') {
+        showToast('Tài khoản hoặc mật khẩu không chính xác. Vui lòng đăng nhập lại!', 'error');
+    }
 });
 
 function showToast(message, type = 'success') {
     const container = document.getElementById('toastContainer');
     
     const toast = document.createElement('div');
-    toast.className = 'toast';
+    toast.className = type === 'error' ? 'toast error' : 'toast';
     
-    const icon = type === 'success' ? 'fas fa-check-circle' : 'fas fa-info-circle';
+    const icon = type === 'success' ? 'fas fa-check-circle' : 
+                 type === 'error' ? 'fas fa-exclamation-circle' : 'fas fa-info-circle';
     
     toast.innerHTML = `
         <i class="${icon}"></i>

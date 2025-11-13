@@ -1,0 +1,111 @@
+.uploadContainer {
+  margin: 20px 0;
+}
+
+.uploadArea {
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #fafafa;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.uploadArea:hover {
+  border-color: #007bff;
+  background-color: #f8f9fa;
+}
+
+.uploadArea.dragOver {
+  border-color: #007bff;
+  background-color: #e3f2fd;
+  transform: scale(1.02);
+}
+
+.uploadArea.uploading {
+  border-color: #28a745;
+  background-color: #f8fff9;
+  cursor: not-allowed;
+}
+
+.uploadContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.uploadIcon {
+  font-size: 48px;
+  color: #6c757d;
+  margin-bottom: 10px;
+}
+
+.uploadArea:hover .uploadIcon {
+  color: #007bff;
+}
+
+.uploadText {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  margin: 0;
+}
+
+.uploadSubtext {
+  font-size: 14px;
+  color: #6c757d;
+  margin: 0;
+}
+
+.uploadHint {
+  font-size: 12px;
+  color: #999;
+  margin: 0;
+}
+
+.uploadingContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.progressBar {
+  width: 200px;
+  height: 8px;
+  background-color: #e9ecef;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background-color: #28a745;
+  transition: width 0.3s ease;
+}
+
+.uploadingContent p {
+  margin: 0;
+  color: #28a745;
+  font-weight: 500;
+}

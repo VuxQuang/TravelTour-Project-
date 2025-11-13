@@ -100,4 +100,7 @@ public interface BookingService {
     // Thống kê số booking theo status
     long getTotalBookingsByStatus(BookingStatus status);
 
+    // Lấy tất cả booking với filter (cho admin)
+    Page<Booking> getAllBookings(String keyword, BookingStatus status, Long tourId, Long userId, Pageable pageable);
+
 }

@@ -70,4 +70,10 @@ public interface ReviewService {
 
     // Admin: Xóa review
     void deleteReviewByAdmin(Long reviewId);
+
+    // Admin: Lấy tất cả reviews với filter
+    Page<Review> getAllReviews(String keyword, ReviewStatus status, Integer rating, Long tourId, Pageable pageable);
+
+    // Admin: Thêm phản hồi admin
+    Review addAdminResponse(Long reviewId, String response);
 }

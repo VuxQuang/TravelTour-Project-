@@ -160,7 +160,7 @@ public class UserServiceImpl implements UserService {
                 .provider("FORM")
                 .build();
 
-        user.getRoles().add(role);
+        user.setRoles(new HashSet<>(Set.of(role)));
         userRepository.save(user);
     }
 
@@ -173,16 +173,17 @@ public class UserServiceImpl implements UserService {
             throw new IllegalArgumentException("Email đã tồn tại");
         }
 
-        if (!user.getFullName().equals(dto.getFullName())) {
+        // Update fields safely with null checks
+        if (dto.getFullName() != null && !Objects.equals(user.getFullName(), dto.getFullName())) {
             user.setFullName(dto.getFullName());
         }
-        if (!user.getPhoneNumber().equals(dto.getPhoneNumber())) {
+        if (dto.getPhoneNumber() != null && !Objects.equals(user.getPhoneNumber(), dto.getPhoneNumber())) {
             user.setPhoneNumber(dto.getPhoneNumber());
         }
-        if (!user.getAddress().equals(dto.getAddress())) {
+        if (dto.getAddress() != null && !Objects.equals(user.getAddress(), dto.getAddress())) {
             user.setAddress(dto.getAddress());
         }
-        if (!user.getStatus().equals(dto.getStatus())) {
+        if (dto.getStatus() != null && !Objects.equals(user.getStatus(), dto.getStatus())) {
             user.setStatus(dto.getStatus());
         }
 
@@ -190,7 +191,11 @@ public class UserServiceImpl implements UserService {
             user.setPassword(passwordEncoder.encode(dto.getPassword()));
         }
 
-        if (!user.getRoles().contains(dto.getRoleName())) {
+        // Update role if different
+        boolean hasRole = user.getRoles().stream()
+                .anyMatch(role -> role.getRoleName().equals(dto.getRoleName()));
+        
+        if (!hasRole) {
             Role role = roleRepository.findByRoleName(dto.getRoleName())
                     .orElseThrow(() -> new IllegalArgumentException("Vai trò không hợp lệ"));
             user.setRoles(new HashSet<>(Set.of(role)));

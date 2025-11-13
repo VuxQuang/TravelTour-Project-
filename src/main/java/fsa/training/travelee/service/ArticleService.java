@@ -1,5 +1,6 @@
 package fsa.training.travelee.service;
 
+import fsa.training.travelee.dto.ArticleDto;
 import fsa.training.travelee.entity.Article;
 import fsa.training.travelee.entity.CategoryType;
 import org.springframework.data.domain.Page;
@@ -12,13 +13,19 @@ public interface ArticleService {
     Page<Article> findAll(String keyword, Long id, CategoryType type, Pageable pageable);
 
     Optional<Article> findById(Long id);
+    
+    Article findByIdOrThrow(Long id);
 
     Article save(Article article);
+    
+    Article createArticle(ArticleDto articleDto);
+    
+    Article updateArticle(Long id, ArticleDto articleDto);
+    
+    void deleteArticle(Long id);
 
     void deleteById(Long id);
 
     List<Article> findTop3LatestArticles();
-
-
 }
 

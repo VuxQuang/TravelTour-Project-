@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -205,6 +206,37 @@ public class TourServiceImpl implements TourService {
     @Override
     public long countTours() {
         return tourRepository.count();
+    }
+
+    // Admin methods
+    @Override
+    public Page<Tour> getAllToursForAdmin(String keyword, String status, Pageable pageable) {
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            if (status != null && !status.trim().isEmpty()) {
+                return tourRepository.findAllByTitleContainingIgnoreCaseAndStatus(keyword, status, pageable);
+            } else {
+                return tourRepository.findAllByTitleContainingIgnoreCase(keyword, pageable);
+            }
+        } else if (status != null && !status.trim().isEmpty()) {
+            return tourRepository.findAllByStatus(status, pageable);
+        } else {
+            return tourRepository.findAll(pageable);
+        }
+    }
+
+    @Override
+    public Tour createTourAdmin(Tour tour) {
+        return tourRepository.save(tour);
+    }
+
+    @Override
+    public Tour updateTourAdmin(Tour tour) {
+        return tourRepository.save(tour);
+    }
+
+    @Override
+    public void deleteTourAdmin(Long id) {
+        tourRepository.deleteById(id);
     }
 
     private String convertListToString(List<String> list) {

@@ -1,0 +1,133 @@
+{
+  "common": {
+    "search": "検索...",
+    "profile": "プロフィール",
+    "settings": "設定",
+    "logout": "ログアウト",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "edit": "編集",
+    "delete": "削除",
+    "create": "作成",
+    "back": "戻る",
+    "loading": "読み込み中...",
+    "error": "エラー",
+    "success": "成功",
+    "confirm": "確認",
+    "yes": "はい",
+    "no": "いいえ"
+  },
+  "header": {
+    "title": "Travelee",
+    "slogan": "素晴らしい体験と共に旅行！",
+    "searchPlaceholder": "検索...",
+    "notifications": "通知",
+    "messages": "メッセージ"
+  },
+  "sidebar": {
+    "dashboard": "ダッシュボード",
+    "users": "ユーザー",
+    "tours": "ツアー",
+    "articles": "記事",
+    "bookings": "予約",
+    "reviews": "レビュー",
+    "promotions": "プロモーション",
+    "support": "サポート",
+    "settings": "設定",
+    "categories": "カテゴリ管理",
+    "calendar": "スケジュール"
+  },
+  "dashboard": {
+    "title": "ダッシュボード",
+    "welcome": "Travelee Adminへようこそ",
+    "totalUsers": "総ユーザー数",
+    "totalTours": "総ツアー数",
+    "totalBookings": "総予約数",
+    "revenue": "収益",
+    "recentActivity": "最近のアクティビティ",
+    "quickStats": "クイック統計",
+    "averageRating": "平均評価",
+    "revenueChart": "日別収益チャート",
+    "totalMonthlyRevenue": "月間総収益",
+    "totalMonthlyBookings": "月間総予約数",
+    "month": "月",
+    "noRecentActivity": "最近のアクティビティはありません"
+  },
+  "users": {
+    "title": "ユーザー管理",
+    "list": "ユーザー一覧",
+    "create": "新しいユーザーを作成",
+    "edit": "ユーザーを編集",
+    "details": "ユーザー詳細",
+    "name": "名前",
+    "email": "メール",
+    "phone": "電話",
+    "role": "役割",
+    "status": "ステータス",
+    "createdAt": "作成日",
+    "actions": "アクション"
+  },
+  "articles": {
+    "title": "記事管理",
+    "list": "記事一覧",
+    "create": "新しい記事を作成",
+    "edit": "記事を編集",
+    "titleField": "タイトル",
+    "content": "コンテンツ",
+    "author": "著者",
+    "publishedAt": "公開日",
+    "status": "ステータス"
+  },
+  "language": {
+    "vi": "Tiếng Việt",
+    "en": "English",
+    "ja": "日本語",
+    "select": "言語を選択"
+  },
+  "tours": {
+    "title": "ツアー管理",
+    "list": "ツアー一覧",
+    "create": "新しいツアーを作成",
+    "edit": "ツアーを編集",
+    "name": "ツアー名",
+    "description": "説明",
+    "price": "価格",
+    "duration": "期間",
+    "status": "ステータス",
+    "active": "アクティブ",
+    "inactive": "非アクティブ",
+    "draft": "ドラフト",
+    "domestic": "国内旅行",
+    "international": "海外旅行",
+    "resort": "リゾート旅行",
+    "adventure": "アドベンチャー旅行"
+  },
+  "categories": {
+    "title": "カテゴリ管理",
+    "list": "カテゴリ一覧",
+    "create": "新しいカテゴリを作成",
+    "edit": "カテゴリを編集",
+    "name": "カテゴリ名",
+    "description": "説明",
+    "status": "ステータス",
+    "active": "アクティブ",
+    "inactive": "非アクティブ",
+    "searchPlaceholder": "カテゴリ名で検索",
+    "createButton": "カテゴリを作成",
+    "deleteConfirm": "カテゴリを削除してもよろしいですか"
+  },
+  "calendar": {
+    "title": "スケジュール",
+    "schedule": "スケジュール",
+    "events": "イベント",
+    "bookings": "予約"
+  },
+  "login": {
+    "title": "管理者ログイン",
+    "username": "ユーザー名",
+    "password": "パスワード",
+    "submit": "ログイン",
+    "submitting": "ログイン中...",
+    "error": "ログインに失敗しました。認証情報を確認してください。"
+  }
+}
